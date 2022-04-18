@@ -1,0 +1,8 @@
+{
+  "name": "monorepo-amortization-fi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Felipe-AR/monorepo-amortization-fi.git",
+  "author": "Felipe Ribeiro <fefeucn_cm@hotmail.com>",
+  "license": "MIT"
+}
