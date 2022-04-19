@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/Felipe-AR/monorepo-amortization-fi.git",
   "author": "Felipe Ribeiro <fefeucn_cm@hotmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
 }

@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import { Sac } from "../domain/entities/Sac";
+import { IAmortizacao } from "../core/domain/Tabela";
+import { Price } from "../domain/entities/Price";
 
 export class PriceController {
-    public show(request: Request, response: Response) {
-        const { emprestimo, quantidadeDeParcelas, taxa } = request.body;
-        const sac = new Sac(emprestimo, quantidadeDeParcelas, taxa);
-        return response.json(sac.exibirTabela());
-    }
+  public show(request: Request, response: Response): Response<IAmortizacao[]> {
+    const { emprestimo, quantidadeDeParcelas, taxa } = request.body;
+    const price = new Price(emprestimo, quantidadeDeParcelas, taxa);
+    return response.json(price.exibirTabela());
+  }
 }
