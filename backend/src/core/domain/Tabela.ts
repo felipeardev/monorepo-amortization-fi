@@ -19,9 +19,9 @@ export abstract class Tabela {
   protected dados: IAmortizacao[] = [];
 
   constructor(emprestimo: number, quantidadeDeParcelas: number, taxa: number) {
-    this.emprestimo = emprestimo;
-    this.quantidadeDeParcelas = quantidadeDeParcelas;
-    this.taxa = taxa;
+    this.emprestimo = Number(emprestimo);
+    this.quantidadeDeParcelas = Number(quantidadeDeParcelas);
+    this.taxa = Number(taxa);
   }
 
   public inserir(
