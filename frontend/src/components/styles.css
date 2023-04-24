@@ -30,3 +30,13 @@ th {
 table caption {
   margin: 5px 0px;
 }
+
+@media screen and (max-width: 600px) {
+  * {
+    font-family: 12px !important;
+  }
+
+  table {
+    transform: scale(0.90);
+  }
+}

@@ -21,15 +21,16 @@ function App() {
     event.preventDefault();
     setCarregando(true);
 
-    const sac = await axios
+    await axios
       .post<IAmortizacao[]>("https://armotization-fi.onrender.com/sac", dados)
       .then((sac) => {
         setSac(sac.data);
       });
 
-    const price = await axios
+    await axios
       .post("https://armotization-fi.onrender.com/price", dados)
       .then((price) => setPrice(price.data));
+      
     setVisible(true);
     setCarregando(false);
   };

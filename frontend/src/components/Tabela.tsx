@@ -13,7 +13,7 @@ export function Tabela(props: propsAmortizacao) {
       <caption>{props.titulo}</caption>
       <thead>
         <tr>
-          <th align="center">Periodo</th>
+          <th align="center">#</th>
           <th align="right">Parcela</th>
           <th align="right">Juros</th>
           <th align="right">Amortizacao</th>
