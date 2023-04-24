@@ -15,20 +15,28 @@ function App() {
   const [dados, setDados] = useState<any>(initialState);
   const [sac, setSac] = useState<IAmortizacao[]>([]);
   const [price, setPrice] = useState<IAmortizacao[]>([]);
+  const [carregando, setCarregando] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setCarregando(true);
+
     const sac = await axios
       .post<IAmortizacao[]>("https://armotization-fi.onrender.com/sac", dados)
-      .then((sac) => setSac(sac.data));
+      .then((sac) => {
+        setSac(sac.data);
+      });
+
     const price = await axios
       .post("https://armotization-fi.onrender.com/price", dados)
       .then((price) => setPrice(price.data));
     setVisible(true);
+    setCarregando(false);
   };
 
   return (
     <div>
+      { carregando && <h1 style={{ color: '#8757E5'}}>Carregando...</h1>}
       {!visible && <h1>Por favor, inserir os dados abaixo.</h1>}
       <form onSubmit={handleSubmit}>
         <label>Emprestimo:</label>

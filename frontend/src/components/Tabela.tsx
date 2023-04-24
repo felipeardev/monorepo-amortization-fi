@@ -24,28 +24,28 @@ export function Tabela(props: propsAmortizacao) {
         {props.dados.map((item) => {
           return (
             <tr>
-              <td key={item.periodo} align="center">
+              <td key={item.periodo + props.titulo} align="center">
                 {item.periodo}
               </td>
-              <td key={item.periodo} align="right">
+              <td key={item.periodo + props.titulo} align="right">
                 {item.parcela.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "brl",
                 })}
               </td>
-              <td key={item.periodo} align="right">
+              <td key={item.periodo + props.titulo} align="right">
                 {item.juros.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "brl",
                 })}
               </td>
-              <td key={item.periodo} align="right">
+              <td key={item.periodo + props.titulo} align="right">
                 {item.amortizacao.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "brl",
                 })}
               </td>
-              <td key={item.periodo} align="right">
+              <td key={item.periodo + props.titulo} align="right">
                 {item.saldo.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "brl",

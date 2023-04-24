@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
   color: #FFFFFF;
 }
 
@@ -21,4 +22,14 @@ input, button {
   width: 100%;
   padding: .25rem .25rem;
   color: #202020 !important;
+}
+
+@media screen and (max-width: 600px) {
+  * {
+    font-size: 12px;
+  }
+
+  input, button {
+    padding: .25rem 0rem;
+  }
 }
