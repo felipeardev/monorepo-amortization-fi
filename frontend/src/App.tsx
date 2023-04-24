@@ -19,10 +19,10 @@ function App() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const sac = await axios
-      .post<IAmortizacao[]>("http://localhost:3333/sac", dados)
+      .post<IAmortizacao[]>("https://armotization-fi.onrender.com/sac", dados)
       .then((sac) => setSac(sac.data));
     const price = await axios
-      .post("http://localhost:3333/price", dados)
+      .post("https://armotization-fi.onrender.com/price", dados)
       .then((price) => setPrice(price.data));
     setVisible(true);
   };
