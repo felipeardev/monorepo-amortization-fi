@@ -52,10 +52,10 @@ function App() {
   }, [sac, price])
 
   return (
-    <div style={{ marginTop: '20px'}}>
-      { carregando && <h2 style={{ color: '#00ff99'}}>Carregando...</h2>}
+    <div style={{ marginTop: '10px'}}>
       {!visible && <h1>Por favor, inserir os dados abaixo.</h1>}
       <form onSubmit={handleSubmit}>
+        { carregando && <h2 style={{ color: '#00ff99'}}>Carregando...</h2>}
         <label>Emprestimo:</label>
         <input
           type="text"
