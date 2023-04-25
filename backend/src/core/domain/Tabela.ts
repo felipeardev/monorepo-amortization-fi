@@ -1,4 +1,7 @@
+import { randomUUID } from "crypto";
+
 export interface IAmortizacao {
+  id: string;
   periodo: number;
   parcela: number;
   juros: number;
@@ -32,6 +35,7 @@ export abstract class Tabela {
     saldo: number
   ) {
     this.dados.push({
+      id: randomUUID(),
       periodo: periodo,
       parcela: Calculos.arredondar(parcela),
       juros: Calculos.arredondar(juros),
