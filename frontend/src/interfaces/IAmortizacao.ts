@@ -5,6 +5,7 @@ export interface Amortizacao {
 }
 
 export interface IAmortizacao {
+  id: string;
   periodo: number;
   parcela: number;
   juros: number;

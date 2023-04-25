@@ -1,25 +1,29 @@
 table {
-  margin-top: .5rem;
-  max-width: 1000px;
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
   background: #F0F0F0;
-  /* padding: 0rem .25rem; */
-  border-radius: 4px;
-  color: #000;
+  border-collapse: collapse;
+  outline: 1px solid #F0F0F0;
+  outline-style: dashed;
+}
+
+table > * {
+  font-size: 12px;
+}
+
+td:nth-child(odd) {
+  background: #e0e0e0;
+}
+
+th:nth-child(1), 
+td:nth-child(1) {
+  padding: 10px 10px;
 }
 
 th, td {
-  padding: 10px 5px;
-}
-
-tr, td {
-  /* border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent; */
   color: #000;
-  border: none;
-}
-
-td:nth-child(even) {
-  background: #CCC;
+  padding: 10px 0px;
 }
 
 th {
@@ -27,16 +31,28 @@ th {
   color: #F0F0F0;
 }
 
-table caption {
-  margin: 5px 0px;
+tr:last-child > td {
+  background: #202020;
+  color: #F0F0F0;
 }
 
-@media screen and (max-width: 600px) {
-  * {
-    font-family: 12px !important;
-  }
+tr:last-child > td:nth-child(odd) {
+  background: #303030;
+}
 
-  table {
-    transform: scale(0.90);
-  }
+tr:last-child > td:first-child {
+  background: #8757e5;
+  color: #F0F0F0;
+}
+
+caption {
+  position: absolute;
+  top: -15px;
+  left: calc(50% - 57.6px);
+  width: max-content;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  background: #F0F0F0;
+  color: #000;
 }

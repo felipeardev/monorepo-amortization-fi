@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IAmortizacao } from "./interfaces/IAmortizacao";
 import { Tabela } from "./components/Tabela";
@@ -17,27 +17,43 @@ function App() {
   const [price, setPrice] = useState<IAmortizacao[]>([]);
   const [carregando, setCarregando] = useState<boolean>(false);
 
+  const apiAddresses = [
+    {
+      sac: "https://armotization-fi.onrender.com/sac",
+      price: "https://armotization-fi.onrender.com/sac"
+    },
+    {
+      sac: "http://localhost:3333/sac",
+      price: "http://localhost:3333/price"
+    }
+  ];
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setCarregando(true);
 
     await axios
-      .post<IAmortizacao[]>("https://armotization-fi.onrender.com/sac", dados)
+      .post<IAmortizacao[]>(apiAddresses[0].sac, dados)
       .then((sac) => {
         setSac(sac.data);
       });
 
     await axios
-      .post("https://armotization-fi.onrender.com/price", dados)
+      .post(apiAddresses[0].price, dados)
       .then((price) => setPrice(price.data));
-      
+
     setVisible(true);
     setCarregando(false);
   };
 
+  useEffect(() => {
+    console.log(price);
+    console.log(sac);
+  }, [sac, price])
+
   return (
-    <div>
-      { carregando && <h1 style={{ color: '#8757E5'}}>Carregando...</h1>}
+    <div style={{ marginTop: '20px'}}>
+      { carregando && <h2 style={{ color: '#00ff99'}}>Carregando...</h2>}
       {!visible && <h1>Por favor, inserir os dados abaixo.</h1>}
       <form onSubmit={handleSubmit}>
         <label>Emprestimo:</label>
@@ -48,7 +64,6 @@ function App() {
           value={dados.emprestimo}
           required
         />
-        <br />
 
         <label>Parcelas:</label>
         <input
@@ -60,7 +75,6 @@ function App() {
           value={dados.quantidadeDeParcelas}
           required
         />
-        <br />
 
         <label>Taxa:</label>
         <input
@@ -70,7 +84,6 @@ function App() {
           value={dados.taxa}
           required
         />
-        <br />
         <button>Confirmar</button>
       </form>
       {visible && <Tabela titulo="Tabela Price" dados={price} />}

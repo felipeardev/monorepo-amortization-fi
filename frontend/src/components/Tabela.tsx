@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IAmortizacao } from "../interfaces/IAmortizacao";
 import "./styles.css";
 
@@ -7,10 +7,35 @@ interface propsAmortizacao {
   dados: IAmortizacao[];
 }
 
-export function Tabela(props: propsAmortizacao) {
+type AmortizacaoProperties = Omit<IAmortizacao, "id">;
+type AmortizacaoKeys = keyof AmortizacaoProperties;
+
+export function Tabela({ titulo, dados }: propsAmortizacao) {
+  const [somaParcela, setSomaParcela] = useState<number>(0);
+  const [somaJuros, setSomaJuros] = useState<number>(0);
+  const [somaAmortizacao, setSomaAmortizacao] = useState<number>(0);
+
+  useEffect(() => {
+    setSomaParcela(() => obterSomaDeUmaPropriedade('parcela'));
+    setSomaJuros(() => obterSomaDeUmaPropriedade('juros'));
+    setSomaAmortizacao(() => obterSomaDeUmaPropriedade('amortizacao'));
+  }, [dados]);
+
+  function obterSomaDeUmaPropriedade(nome: AmortizacaoKeys): number {
+    return dados
+      .reduce((total, atual) => total + atual[nome], 0);
+  }
+
+  function converteParaBrl(valor: number): string {
+    return valor.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "brl",
+    });
+  }
+
   return (
     <table>
-      <caption>{props.titulo}</caption>
+      <caption>{titulo}</caption>
       <thead>
         <tr>
           <th align="center">#</th>
@@ -21,39 +46,34 @@ export function Tabela(props: propsAmortizacao) {
         </tr>
       </thead>
       <tbody>
-        {props.dados.map((item) => {
+        {dados.map((item) => {
           return (
-            <tr>
-              <td key={item.periodo + props.titulo} align="center">
+            <tr key={item.id}>
+              <td align="center">
                 {item.periodo}
               </td>
-              <td key={item.periodo + props.titulo} align="right">
-                {item.parcela.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "brl",
-                })}
+              <td align="right">
+                { converteParaBrl(item.parcela) }
               </td>
-              <td key={item.periodo + props.titulo} align="right">
-                {item.juros.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "brl",
-                })}
+              <td align="right">
+                { converteParaBrl(item.juros) }
               </td>
-              <td key={item.periodo + props.titulo} align="right">
-                {item.amortizacao.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "brl",
-                })}
+              <td align="right">
+                { converteParaBrl(item.amortizacao) }
               </td>
-              <td key={item.periodo + props.titulo} align="right">
-                {item.saldo.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "brl",
-                })}
+              <td align="right">
+                { converteParaBrl(item.saldo) }
               </td>
             </tr>
           );
         })}
+        <tr>
+          <td align="center">Soma</td>
+          <td align="right">{converteParaBrl(somaParcela)}</td>
+          <td align="right">{converteParaBrl(somaJuros)}</td>
+          <td align="right">{converteParaBrl(somaAmortizacao)}</td>
+          <td align="right"></td>
+        </tr>
       </tbody>
     </table>
   );
