@@ -56,6 +56,7 @@ function App() {
       {!visible && <h1>Por favor, inserir os dados abaixo.</h1>}
       <form onSubmit={handleSubmit}>
         { carregando && <h2 style={{ color: '#00ff99'}}>Carregando...</h2>}
+        <h1>Cálculo dos Metodos de Amortização</h1>
         <label>Emprestimo:</label>
         <input
           type="text"
