@@ -19,8 +19,8 @@ function App() {
 
   const apiAddresses = [
     {
-      sac: `${import.meta.env.API_URL}/sac`,
-      price: `${import.meta.env.API_URL}/sac`
+      sac: `${import.meta.env.VITE_API_URL}/sac`,
+      price: `${import.meta.env.VITE_API_URL}/sac`
     }
   ];
 
