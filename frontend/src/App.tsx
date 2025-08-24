@@ -19,18 +19,16 @@ function App() {
 
   const apiAddresses = [
     {
-      sac: "https://armotization-fi.onrender.com/sac",
-      price: "https://armotization-fi.onrender.com/sac"
-    },
-    {
-      sac: "http://localhost:3333/sac",
-      price: "http://localhost:3333/price"
+      sac: `${import.meta.env.API_URL}/sac`,
+      price: `${import.meta.env.API_URL}/sac`
     }
   ];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setCarregando(true);
+
+    console.log(import.meta.env)
 
     await axios
       .post<IAmortizacao[]>(apiAddresses[0].sac, dados)
