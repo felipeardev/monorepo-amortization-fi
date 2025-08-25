@@ -20,15 +20,13 @@ function App() {
   const apiAddresses = [
     {
       sac: `${import.meta.env.VITE_API_URL}/sac`,
-      price: `${import.meta.env.VITE_API_URL}/sac`
+      price: `${import.meta.env.VITE_API_URL}/price`
     }
   ];
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setCarregando(true);
-
-    console.log(import.meta.env)
 
     await axios
       .post<IAmortizacao[]>(apiAddresses[0].sac, dados)
@@ -41,13 +39,8 @@ function App() {
       .then((price) => setPrice(price.data));
 
     setVisible(true);
-    setCarregando(false);
+    setCarregando(false); 
   };
-
-  useEffect(() => {
-    console.log(price);
-    console.log(sac);
-  }, [sac, price])
 
   return (
     <div style={{ marginTop: '10px'}}>
